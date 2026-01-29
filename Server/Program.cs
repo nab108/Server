@@ -11,10 +11,23 @@ List<Elev> elevs = [
 app.MapGet("/", Hello);
 app.MapGet("/nabil", Nabil);
 app.MapGet("/elev", GimmeElev);
-app.MapGet("/elev/{n}", GimmeOneElev); 
+app.MapGet("/elev/{n}", GimmeOneElev);
+app.MapPost("/elev/new", AddElev);
+
+app.Urls.Add("http://localhost:5081");
+app.Urls.Add("http://*:5081");
+
+
+//10.151.172.66
 app.Run();
 
+IResult AddElev(Elev e)
+{
+    elevs.Add(e);
+    return Results.Ok();
 
+
+}
 
 List<Elev> GimmeElev()
 {
